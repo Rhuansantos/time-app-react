@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './css/main.css';
 
-class ToDoList extends Component {
+export default class ToDoList extends Component {
 
  constructor(props) {
 
@@ -33,5 +33,3 @@ render() {
 
 
 }
-
-export default ToDoList;
