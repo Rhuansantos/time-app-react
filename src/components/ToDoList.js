@@ -3,14 +3,8 @@ import React, { Component } from 'react';
 
 export default class ToDoList extends Component {
 
- constructor(props) {
-
- 	 super(props);
- }
-
 render() {
 	return (
-		<div>
 			<section id="tasks">
 	 		<h2>Tasks</h2>
 				<span class="alert"></span>
@@ -27,7 +21,6 @@ render() {
 	 		</ul>
 
 	 		</section>
- 		</div>
 	);
 }
 

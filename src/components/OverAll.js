@@ -8,7 +8,7 @@ export default class OverAll extends Component {
 		return(
 		 	<section id="overall">
 		 		<h2>Overall</h2>
-		 		<img src={graph} className="OverAll-graph" />
+		 		<img src={graph} className="OverAll-graph" alt="graph"/>
 		 	</section>
 		);	
 	}
