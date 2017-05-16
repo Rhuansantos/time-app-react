@@ -1,3 +1,4 @@
+import * as progressBar from './js/main';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './components/css/main.css';

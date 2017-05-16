@@ -10,7 +10,7 @@ render() {
 				<span class="alert"></span>
 	 			<p>
 		 			<input type="text" id="add-task" placeholder="type here to add a task" />
-		 			<i id="addTask" class="fa fa-plus-circle" id="addTask" aria-hidden="true" ></i>
+		 			<i id="addTask" class="fa fa-plus-circle" id="addTask" aria-hidden="true" >add</i>
 	 			</p>
 
 	 		<ul id="to-do-list">
