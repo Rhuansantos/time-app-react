@@ -1,28 +1,6 @@
 import React, { Component } from 'react';
+import tasks from './data';
 
-
-
-const tasks = [
-
-	{	
-		 id: "1",
-		 input: "Finish the front end"
-	},
-
-	{	
-		id: "2",
-	    input: "Use the localStorage to store the data"
-	},
-	{	
-		id: "3",
-	    input: "Use babel to support es5"
-	},
-	{	
-		id: "4",
-	    input: "load the json for initial data"
-	}
-
-];
 
 export default class ToDoList extends Component {
 
@@ -32,7 +10,6 @@ export default class ToDoList extends Component {
 
     this.state = {
       tasks,
-      newTodo: "",
     };
 
   }
@@ -41,6 +18,11 @@ export default class ToDoList extends Component {
 		event.preventDefault();
 		
 		console.log(this.taskInput.value);
+
+		const timestamp = Date.now();
+
+		let newTask = this.taskInput.value;
+		this.setState({newTask});
 	}
 
 	updateTask(){
@@ -71,7 +53,7 @@ export default class ToDoList extends Component {
 		 		<ul id="to-do-list">
 
 					{ this.state.tasks.map(task =>
-						
+
 			 		<li key={task.id}>
 						<input type="text" value={task.input} disabled />
 						<span className="deleteTask"><i className="fa fa-minus-circle" aria-hidden="true"></i></span>

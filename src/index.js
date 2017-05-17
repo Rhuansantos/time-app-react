@@ -1,20 +1,20 @@
-// import * as progressBar from './js/main';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './components/css/main.css';
-import Header from './components/Header';
-import Time from './components/Time';
-import ToDoList from './components/ToDoList';
-import OverAll from './components/OverAll';
+import {BrowserRouter, Match, Miss} from 'react-router';
+import App from './app';
+import NotFound from './components/NotFound';
 
-ReactDOM.render(
-	<section>
-		<div id="layer"></div>
-	 	<div id="delete-confirmation"></div>
-		<Header />
-		<Time />
-		<ToDoList />
-		<OverAll />
-	</section>,
-  document.getElementById('root')
-);
+
+const Index = () => {
+    return (
+        <BrowserRouter>
+            <div>
+                <Match exactly pattern='/' component={App}/>
+                <Match pattern='/app/' component={App}/>
+                <Miss component={NotFound}/>
+            </div>
+        </BrowserRouter>
+    )
+}
+
+ReactDOM.render(<App />,document.getElementById('root'));
