@@ -9,12 +9,10 @@ export default class Time extends Component {
 	 	<section id="time">
 			<h2>Progress</h2>
 
-			<div class="progress-wrap progress" data-progress-percent="25">
-			  <div class="progress-bar progress">25%</div>
+			<div className="progress-wrap progress" data-progress-percent="25">
+			  <div className="progress-bar progress">25%</div>
 			</div>
 
-
-	 		 <progress></progress>
 		 		<ul>
 		 			<li>
 		 				<h3>Time spent 

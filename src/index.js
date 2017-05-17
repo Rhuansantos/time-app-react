@@ -1,4 +1,4 @@
-import * as progressBar from './js/main';
+// import * as progressBar from './js/main';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './components/css/main.css';
@@ -9,6 +9,8 @@ import OverAll from './components/OverAll';
 
 ReactDOM.render(
 	<section>
+		<div id="layer"></div>
+	 	<div id="delete-confirmation"></div>
 		<Header />
 		<Time />
 		<ToDoList />
