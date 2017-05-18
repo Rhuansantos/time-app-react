@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import tasks from './data';
+import _ from 'lodash';
 
 
 export default class ToDoList extends Component {
@@ -8,30 +9,39 @@ export default class ToDoList extends Component {
 
     super();
     this.createTask = this.createTask.bind(this);
-    // this.state = {
-    //   tasks,
-    //    newTasks: {},
-    // };
 
     this.state = {
-       newTasks: {},
+       tasks,
     };
 
   }
 
+  componentWillMount() {
+    const id = _.uniqueId("prefix-");
+    this.setState({id: id});
+}
+
+
 	createTask(event){
 		event.preventDefault();
+		const id = this.state.id;
 
-        const newTasks = {
+		const events = {...this.state.tasks};
+
+        const inputTasks = {
+        	id: id,
             input: this.taskInput.value,
         }
+        // const tasks = this.taskInput.value;
 
-		const events = {...this.state.NewTasks};
+
 		
 		const timestamp = Date.now();
-		events[`order-${timestamp}`] = event;
+		events[`order-${timestamp}`] = inputTasks;
 
-		this.setState({newTasks: events});
+		this.setState({tasks: events});
+
+		console.log(events);
 
 		this.taskForm.reset();
 
@@ -49,7 +59,10 @@ export default class ToDoList extends Component {
 
 	}
 
+
+
 	render() {
+		
 		return (
 				<section id="tasks">
 		 		<h2>Tasks</h2>
@@ -64,31 +77,16 @@ export default class ToDoList extends Component {
 
 		 		<ul id="to-do-list">
 
-
-		 			{
-		 				<li>
-		 					<input type="text" value={this.state.newTasks.input  } disabled />
-		 				</li>
-		 			
-		 			}
-
-					{ this.state.tasks.map(task =>
-
-			 		<li key={task.id}>
-						<input type="text" value={task.input} disabled />
-						<span className="deleteTask"><i className="fa fa-minus-circle" aria-hidden="true"></i></span>
-					</li>
-
-      				)}
-
+	
 
 			  {Object
-	            .keys(this.state.newTasks)
-	            .map((key, i) => 
-	                <li key={i}>		
-	            		<input key={key} type="text" value={this.state.newTasks.input  } disabled />
+	            .keys(this.state.tasks)
+	            .map((index, obj) => 
+	                <li key={index}>		
+	            		<input type="text" value={this.state.tasks[index].input} disabled />
 	            	</li>
             	)}
+
 
 		 		</ul>
 
