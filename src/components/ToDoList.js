@@ -6,23 +6,35 @@ export default class ToDoList extends Component {
 
  constructor(props) {
 
-    super(props);
+    super();
+    this.createTask = this.createTask.bind(this);
+    // this.state = {
+    //   tasks,
+    //    newTasks: {},
+    // };
 
     this.state = {
-      tasks,
+       newTasks: {},
     };
 
   }
 
 	createTask(event){
 		event.preventDefault();
+
+        const newTasks = {
+            input: this.taskInput.value,
+        }
+
+		const events = {...this.state.NewTasks};
 		
-		console.log(this.taskInput.value);
-
 		const timestamp = Date.now();
+		events[`order-${timestamp}`] = event;
 
-		let newTask = this.taskInput.value;
-		this.setState({newTask});
+		this.setState({newTasks: events});
+
+		this.taskForm.reset();
+
 	}
 
 	updateTask(){
@@ -42,7 +54,7 @@ export default class ToDoList extends Component {
 				<section id="tasks">
 		 		<h2>Tasks</h2>
 					<span className="alert"></span>
-		 			<form onSubmit={(e) => this.createTask(e)}>
+		 			<form ref={(input) => this.taskForm = input} onSubmit={(e) => this.createTask(e)}>
 			 			<p>
 				 			<input type="text" id="add-task" placeholder="type here to add a task" 
 				 			ref={(input) => { this.taskInput = input}} />
@@ -52,6 +64,14 @@ export default class ToDoList extends Component {
 
 		 		<ul id="to-do-list">
 
+
+		 			{
+		 				<li>
+		 					<input type="text" value={this.state.newTasks.input  } disabled />
+		 				</li>
+		 			
+		 			}
+
 					{ this.state.tasks.map(task =>
 
 			 		<li key={task.id}>
@@ -60,6 +80,15 @@ export default class ToDoList extends Component {
 					</li>
 
       				)}
+
+
+			  {Object
+	            .keys(this.state.newTasks)
+	            .map((key, i) => 
+	                <li key={i}>		
+	            		<input key={key} type="text" value={this.state.newTasks.input  } disabled />
+	            	</li>
+            	)}
 
 		 		</ul>
 
