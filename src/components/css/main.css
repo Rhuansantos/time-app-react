@@ -1269,3 +1269,8 @@ section {
       padding-left: 0.9375rem; } }
   #update-confirmation button:last-child:not(:first-child) {
     float: right; }
+
+
+.editTask{
+  margin-left:40px;
+}
