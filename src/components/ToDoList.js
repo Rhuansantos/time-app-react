@@ -48,11 +48,13 @@ export default class ToDoList extends Component {
 	}
 
 	editTask(key, value){
-
 		console.log(key, value);
 		const events = {...this.state.tasks};
 
-		events[key].input = "newwww";
+		let newInput = prompt('enter a new value for ' + value + '');
+ 
+
+		events[key].input = newInput;
 		
 		this.setState({ tasks: events});
 	}
