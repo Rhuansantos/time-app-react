@@ -9,9 +9,10 @@ export default class ToDoList extends Component {
 
     super();
     this.createTask = this.createTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
 
     this.state = {
-       tasks,
+       tasks,   
     };
 
   }
@@ -32,12 +33,9 @@ export default class ToDoList extends Component {
         	id: id,
             input: this.taskInput.value,
         }
-        // const tasks = this.taskInput.value;
-
-
 		
 		const timestamp = Date.now();
-		events[`order-${timestamp}`] = inputTasks;
+		events[`${timestamp}`] = inputTasks;
 
 		this.setState({tasks: events});
 
@@ -51,8 +49,11 @@ export default class ToDoList extends Component {
 
 	}
 
-	deleteTask(){
-
+	deleteTask(key)  {
+		console.log(key);
+		const events = {...this.state.tasks};
+	 	delete events[key];
+		this.setState({ tasks: events});
 	}
 
 	editTask(){
@@ -64,33 +65,32 @@ export default class ToDoList extends Component {
 	render() {
 		
 		return (
-				<section id="tasks">
-		 		<h2>Tasks</h2>
+			<section id="tasks">
+	 			<h2>Tasks</h2>
 					<span className="alert"></span>
-		 			<form ref={(input) => this.taskForm = input} onSubmit={(e) => this.createTask(e)}>
-			 			<p>
-				 			<input type="text" id="add-task" placeholder="type here to add a task" 
-				 			ref={(input) => { this.taskInput = input}} />
-				 			<i className="fa fa-plus-circle" id="addTask" aria-hidden="true" ></i>
-			 			</p>
-		 			</form>
+			 			<form ref={(input) => this.taskForm = input} onSubmit={(e) => this.createTask(e)}>
+				 			<p>
+					 			<input type="text" id="add-task" placeholder="type here to add a task" 
+					 			ref={(input) => { this.taskInput = input}} />
+					 			<i onClick={(e) => this.createTask(e)} className="fa fa-plus-circle" id="addTask" aria-hidden="true" ></i>
+				 			</p>
+			 			</form>
 
-		 		<ul id="to-do-list">
-
-	
+	 		<ul id="to-do-list">
 
 			  {Object
 	            .keys(this.state.tasks)
 	            .map((index, obj) => 
 	                <li key={index}>		
 	            		<input type="text" value={this.state.tasks[index].input} disabled />
+	            		<span onClick={() => this.deleteTask(index)} className="deleteTask"><i className="fa fa-minus-circle" aria-hidden="true"></i></span>
 	            	</li>
             	)}
 
 
-		 		</ul>
+	 		</ul>
 
-		 		</section>
+ 			</section>
 		);
 }
 
